@@ -25,22 +25,22 @@ board = Board(screen)
 listOfPieces = []
 clickSubscribers = []
 
-BR = Rook('BlackRook.png', (100, 100), 'black', screen)
-BN = Knight('BlackKnight.png', (200, 100), 'black', screen)
-BB = Bishop('BlackBishop.png', (300, 100), 'black', screen)
-BQ = Queen('BlackQueen.png', (400, 100), 'black', screen)
-BK = King('BlackKing.png', (500, 100), 'black', screen)
-BB2 = Bishop('BlackBishop.png', (600, 100), 'black', screen)
-BN2 = Knight('BlackKnight.png', (700, 100), 'black', screen)
-BR2 = Rook('BlackRook.png', (800, 100), 'black', screen)
-BP1 = Pawn('BlackPawn.png', (100, 200), 'black', screen)
-BP2 = Pawn('BlackPawn.png', (200, 200), 'black', screen)
-BP3 = Pawn('BlackPawn.png', (300, 200), 'black', screen)
-BP4 = Pawn('BlackPawn.png', (400, 200), 'black', screen)
-BP5 = Pawn('BlackPawn.png', (500, 200), 'black', screen)
-BP6 = Pawn('BlackPawn.png', (600, 200), 'black', screen)
-BP7 = Pawn('BlackPawn.png', (700, 200), 'black', screen)
-BP8 = Pawn('BlackPawn.png', (800, 200), 'black', screen)
+BR = Rook('BlackRook.png', (0, 0), 'black', screen)
+BN = Knight('BlackKnight.png', (1, 0), 'black', screen)
+BB = Bishop('BlackBishop.png', (2, 0), 'black', screen)
+BQ = Queen('BlackQueen.png', (3, 0), 'black', screen)
+BK = King('BlackKing.png', (4, 0), 'black', screen)
+BB2 = Bishop('BlackBishop.png', (5, 0), 'black', screen)
+BN2 = Knight('BlackKnight.png', (6, 0), 'black', screen)
+BR2 = Rook('BlackRook.png', (7, 0), 'black', screen)
+BP1 = Pawn('BlackPawn.png', (0, 1), 'black', screen)
+BP2 = Pawn('BlackPawn.png', (1, 1), 'black', screen)
+BP3 = Pawn('BlackPawn.png', (2, 1), 'black', screen)
+BP4 = Pawn('BlackPawn.png', (3, 1), 'black', screen)
+BP5 = Pawn('BlackPawn.png', (4, 1), 'black', screen)
+BP6 = Pawn('BlackPawn.png', (5, 1), 'black', screen)
+BP7 = Pawn('BlackPawn.png', (6, 1), 'black', screen)
+BP8 = Pawn('BlackPawn.png', (7, 1), 'black', screen)
 
 listOfPieces.append(BR)
 listOfPieces.append(BN)
@@ -59,22 +59,22 @@ listOfPieces.append(BP6)
 listOfPieces.append(BP7)
 listOfPieces.append(BP8)
 
-WR = Rook('WhiteRook.png', (100, 800), 'white', screen)
-WN = Knight('WhiteKnight.png', (200, 800), 'white', screen)
-WB = Bishop('WhiteBishop.png', (300, 800), 'white', screen)
-WQ = Queen('WhiteQueen.png', (400, 800), 'white', screen)
-WK = King('WhiteKing.png', (500, 800), 'white', screen)
-WN2 = Knight('WhiteKnight.png', (700, 800), 'white', screen)
-WB2 = Bishop('WhiteBishop.png', (600, 800), 'white', screen)
-WR2 = Rook('WhiteRook.png', (800, 800), 'white', screen)
-WP1 = Pawn('WhitePawn.png', (100, 700), 'white', screen)
-WP2 = Pawn('WhitePawn.png', (200, 700), 'white', screen)
-WP3 = Pawn('WhitePawn.png', (300, 700), 'white', screen)
-WP4 = Pawn('WhitePawn.png', (400, 700), 'white', screen)
-WP5 = Pawn('WhitePawn.png', (500, 700), 'white', screen)
-WP6 = Pawn('WhitePawn.png', (600, 700), 'white', screen)
-WP7 = Pawn('WhitePawn.png', (700, 700), 'white', screen)
-WP8 = Pawn('WhitePawn.png', (800, 700), 'white', screen)
+WR = Rook('WhiteRook.png', (0, 7), 'white', screen)
+WN = Knight('WhiteKnight.png', (1, 7), 'white', screen)
+WB = Bishop('WhiteBishop.png', (2, 7), 'white', screen)
+WQ = Queen('WhiteQueen.png', (3, 7), 'white', screen)
+WK = King('WhiteKing.png', (4, 7), 'white', screen)
+WN2 = Knight('WhiteKnight.png', (5, 7), 'white', screen)
+WB2 = Bishop('WhiteBishop.png', (6, 7), 'white', screen)
+WR2 = Rook('WhiteRook.png', (7, 7), 'white', screen)
+WP1 = Pawn('WhitePawn.png', (0, 6), 'white', screen)
+WP2 = Pawn('WhitePawn.png', (1, 6), 'white', screen)
+WP3 = Pawn('WhitePawn.png', (2, 6), 'white', screen)
+WP4 = Pawn('WhitePawn.png', (3, 6), 'white', screen)
+WP5 = Pawn('WhitePawn.png', (4, 6), 'white', screen)
+WP6 = Pawn('WhitePawn.png', (5, 6), 'white', screen)
+WP7 = Pawn('WhitePawn.png', (6, 6), 'white', screen)
+WP8 = Pawn('WhitePawn.png', (7, 6), 'white', screen)
 
 listOfPieces.append(WR)
 listOfPieces.append(WN)
@@ -99,9 +99,9 @@ def attach(piece):
 def detach(piece):
     clickSubscribers.remove(piece)
 
-def notify(mouseX, mouseY):
+def notify(newLocation):
     for piece in clickSubscribers:
-        piece.clickedPiece(mouseX, mouseY)
+        piece.clickedPiece(newLocation)
 
 for piece in listOfPieces:
     attach(piece)
@@ -113,9 +113,10 @@ while game:
         if event.type == pygame.QUIT:
             game = False
         elif pygame.mouse.get_pressed()[0]:
-            mouseX = int(pygame.mouse.get_pos()[0] / 100) * 100
-            mouseY = int(pygame.mouse.get_pos()[1] / 100) * 100
-            notify(mouseX, mouseY)
+            mouseX = int(pygame.mouse.get_pos()[0] / 100) - 1
+            mouseY = int(pygame.mouse.get_pos()[1] / 100) - 1
+            newLocation = (mouseX, mouseY)
+            notify(newLocation)
 
     # Draws the board and pieces after every move
     board.draw()
