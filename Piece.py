@@ -13,12 +13,12 @@ class Piece:
         scaledPieceImage = pygame.transform.scale(pieceImage, (100, 100))
         self.screen.blit(scaledPieceImage, ((self.location[0] + 1) * 100, (self.location[1] + 1) * 100))
 
-    def clickedPiece(self, mouseX, mouseY):
-        if ((self.location[0] == mouseX) and (self.location[1] == mouseY)):
+    def clickedPiece(self, newLocation):
+        if ((newLocation[0] == self.location[0]) and (newLocation[1] == self.location[1])):
             print(self.location)
 
-    def movePiece(self, mouseX, mouseY):
-        pass
+    def movePiece(self, location):
+        self.loaction = location
 
 class Knight(Piece):
     pass

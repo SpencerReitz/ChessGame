@@ -99,9 +99,9 @@ def attach(piece):
 def detach(piece):
     clickSubscribers.remove(piece)
 
-def notify(mouseX, mouseY):
+def notify(newLocation):
     for piece in clickSubscribers:
-        piece.clickedPiece(mouseX, mouseY)
+        piece.clickedPiece(newLocation)
 
 for piece in listOfPieces:
     attach(piece)
@@ -115,7 +115,8 @@ while game:
         elif pygame.mouse.get_pressed()[0]:
             mouseX = int(pygame.mouse.get_pos()[0] / 100) - 1
             mouseY = int(pygame.mouse.get_pos()[1] / 100) - 1
-            notify(mouseX, mouseY)
+            newLocation = (mouseX, mouseY)
+            notify(newLocation)
 
     # Draws the board and pieces after every move
     board.draw()
