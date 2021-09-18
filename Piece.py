@@ -7,13 +7,18 @@ class Piece:
         self.location = location
         self.color    = color
         self.screen = screen
+
     def draw(self):
         pieceImage = pygame.image.load(self.image)
         scaledPieceImage = pygame.transform.scale(pieceImage, (100, 100))
-        self.screen.blit(scaledPieceImage, self.location)
+        self.screen.blit(scaledPieceImage, ((self.location[0] + 1) * 100, (self.location[1] + 1) * 100))
+
     def clickedPiece(self, mouseX, mouseY):
         if ((self.location[0] == mouseX) and (self.location[1] == mouseY)):
             print(self.location)
+
+    def movePiece(self, mouseX, mouseY):
+        pass
 
 class Knight(Piece):
     pass
