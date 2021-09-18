@@ -1,6 +1,12 @@
 import pygame
 import pygame.image
 from Piece import Knight
+from Piece import Rook
+from Piece import Pawn
+from Piece import Queen
+from Piece import Bishop
+from Piece import King
+from Board import Board
 
 ## Makes the game screen and names the window
 pygame.init()
@@ -8,49 +14,48 @@ pygame.font.init()
 pygame.display.set_caption('Spencer\'s Chess Game')
 screen = pygame.display.set_mode((1200, 1000))
 
-# Sets the colors on the board and in the background
-whiteSquare = (255, 255, 255)
-greySquare = (160, 160, 160)
-backgroundColor = (102, 178, 255)
-
-# Initializes the piece images
-BK = pygame.image.load("BlackKing.png")
-BK = pygame.transform.scale(BK, (100, 100)) 
-
-# Just places the base game
-def initialGameState():
-    screen.blit(BK, (100, 100))
-    BN = Knight('BlackKnight.png', (100, 100), 'black', screen)
-    BN.draw()
-
-# Callable funition that will draw an 8x8 chess board with grey and white squares and a blue background
-def boardCreation():
-    screen.fill(backgroundColor)
-    yPosition = 100
-    for i in range (4):
-        for j in range(4):
-            pygame.draw.rect(screen, whiteSquare, pygame.Rect(100, yPosition, 100, 100))
-            pygame.draw.rect(screen, greySquare, pygame.Rect(200, yPosition, 100, 100))            
-            pygame.draw.rect(screen, whiteSquare, pygame.Rect(300, yPosition, 100, 100))
-            pygame.draw.rect(screen, greySquare, pygame.Rect(400, yPosition, 100, 100))  
-            pygame.draw.rect(screen, whiteSquare, pygame.Rect(500, yPosition, 100, 100))
-            pygame.draw.rect(screen, greySquare, pygame.Rect(600, yPosition, 100, 100))  
-            pygame.draw.rect(screen, whiteSquare, pygame.Rect(700, yPosition, 100, 100))
-            pygame.draw.rect(screen, greySquare, pygame.Rect(800, yPosition, 100, 100))  
-            pygame.draw.rect(screen, greySquare, pygame.Rect(100, yPosition + 100, 100, 100))
-            pygame.draw.rect(screen, whiteSquare, pygame.Rect(200, yPosition + 100, 100, 100))            
-            pygame.draw.rect(screen, greySquare, pygame.Rect(300, yPosition + 100, 100, 100))
-            pygame.draw.rect(screen, whiteSquare, pygame.Rect(400, yPosition + 100, 100, 100))  
-            pygame.draw.rect(screen, greySquare, pygame.Rect(500, yPosition + 100, 100, 100))
-            pygame.draw.rect(screen, whiteSquare, pygame.Rect(600, yPosition + 100, 100, 100))  
-            pygame.draw.rect(screen, greySquare, pygame.Rect(700, yPosition + 100, 100, 100))
-            pygame.draw.rect(screen, whiteSquare, pygame.Rect(800, yPosition + 100, 100, 100))        
-        yPosition += 200
-
 # Starts the game
 game = True
 
+# Create the board and piece objects
+board = Board(screen)
 
+listOfPieces = []
+
+BR = Rook('BlackRook.png', (100, 100), 'black', screen)
+listOfPieces.append(BR)
+BN = Knight('BlackKnight.png', (200, 100), 'black', screen)
+BB = Bishop('BlackBishop.png', (300, 100), 'black', screen)
+BQ = Queen('BlackQueen.png', (400, 100), 'black', screen)
+BK = King('BlackKing.png', (500, 100), 'black', screen)
+BB2 = Bishop('BlackBishop.png', (600, 100), 'black', screen)
+BN2 = Knight('BlackKnight.png', (700, 100), 'black', screen)
+BR2 = Rook('BlackRook.png', (800, 100), 'black', screen)
+BP1 = Pawn('BlackPawn.png', (100, 200), 'black', screen)
+BP2 = Pawn('BlackPawn.png', (200, 200), 'black', screen)
+BP3 = Pawn('BlackPawn.png', (300, 200), 'black', screen)
+BP4 = Pawn('BlackPawn.png', (400, 200), 'black', screen)
+BP5 = Pawn('BlackPawn.png', (500, 200), 'black', screen)
+BP6 = Pawn('BlackPawn.png', (600, 200), 'black', screen)
+BP7 = Pawn('BlackPawn.png', (700, 200), 'black', screen)
+BP8 = Pawn('BlackPawn.png', (800, 200), 'black', screen)
+
+WR = Rook('WhiteRook.png', (100, 800), 'white', screen)
+WN = Knight('WhiteKnight.png', (200, 800), 'white', screen)
+WB = Bishop('WhiteBishop.png', (300, 800), 'white', screen)
+WQ = Queen('WhiteQueen.png', (400, 800), 'white', screen)
+WK = King('WhiteKing.png', (500, 800), 'white', screen)
+WN2 = Knight('WhiteKnight.png', (700, 800), 'white', screen)
+WB2 = Bishop('WhiteBishop.png', (600, 800), 'white', screen)
+WR2 = Rook('WhiteRook.png', (800, 800), 'white', screen)
+WP1 = Pawn('WhitePawn.png', (100, 700), 'white', screen)
+WP2 = Pawn('WhitePawn.png', (200, 700), 'white', screen)
+WP3 = Pawn('WhitePawn.png', (300, 700), 'white', screen)
+WP4 = Pawn('WhitePawn.png', (400, 700), 'white', screen)
+WP5 = Pawn('WhitePawn.png', (500, 700), 'white', screen)
+WP6 = Pawn('WhitePawn.png', (600, 700), 'white', screen)
+WP7 = Pawn('WhitePawn.png', (700, 700), 'white', screen)
+WP8 = Pawn('WhitePawn.png', (800, 700), 'white', screen)
 
 # Main game loop
 while game:
@@ -59,9 +64,39 @@ while game:
     for event in pygame.event.get():   
         if event.type == pygame.QUIT:
             game = False
-    # Calling the board creation to get an initial chess board
-    boardCreation()
-    initialGameState()
+    board.draw()
+    BR.draw()
+    BN.draw()
+    BB.draw()
+    BQ.draw()
+    BK.draw()
+    BB2.draw()
+    BN2.draw()
+    BR2.draw()
+    BP1.draw()
+    BP2.draw()
+    BP3.draw()
+    BP4.draw()
+    BP5.draw()
+    BP6.draw()
+    BP7.draw()
+    BP8.draw()
 
+    WR.draw()
+    WN.draw()
+    WB.draw()
+    WQ.draw()
+    WK.draw()
+    WB2.draw()
+    WN2.draw()
+    WR2.draw()
+    WP1.draw()
+    WP2.draw()
+    WP3.draw()
+    WP4.draw()
+    WP5.draw()
+    WP6.draw()
+    WP7.draw()
+    WP8.draw()
     # Displays everything made before this point
     pygame.display.flip()
