@@ -22,7 +22,17 @@ class Rook(Piece):
     pass
 
 class Pawn(Piece):
-    pass
+    def __init__(self):
+        super.__init__()
+        self.first_move = True
+
+    def getMoves(self):
+        if (self.first_move):
+            #one or two given not blocked
+            self.first_move = False
+        else:
+            #one given not blocked
+
 
 class Queen(Piece):
     pass
