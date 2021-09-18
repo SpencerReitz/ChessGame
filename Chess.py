@@ -1,4 +1,5 @@
 import pygame
+from pygame import mouse
 import pygame.image
 from Piece import Knight
 from Piece import Rook
@@ -20,10 +21,11 @@ game = True
 # Create the board and piece objects
 board = Board(screen)
 
+# A list for all pieces to live in so piece drawing is an easy loop
 listOfPieces = []
+clickSubscribers = []
 
 BR = Rook('BlackRook.png', (100, 100), 'black', screen)
-listOfPieces.append(BR)
 BN = Knight('BlackKnight.png', (200, 100), 'black', screen)
 BB = Bishop('BlackBishop.png', (300, 100), 'black', screen)
 BQ = Queen('BlackQueen.png', (400, 100), 'black', screen)
@@ -39,6 +41,23 @@ BP5 = Pawn('BlackPawn.png', (500, 200), 'black', screen)
 BP6 = Pawn('BlackPawn.png', (600, 200), 'black', screen)
 BP7 = Pawn('BlackPawn.png', (700, 200), 'black', screen)
 BP8 = Pawn('BlackPawn.png', (800, 200), 'black', screen)
+
+listOfPieces.append(BR)
+listOfPieces.append(BN)
+listOfPieces.append(BB)
+listOfPieces.append(BQ)
+listOfPieces.append(BK)
+listOfPieces.append(BB2)
+listOfPieces.append(BN2)
+listOfPieces.append(BR2)
+listOfPieces.append(BP1)
+listOfPieces.append(BP2)
+listOfPieces.append(BP3)
+listOfPieces.append(BP4)
+listOfPieces.append(BP5)
+listOfPieces.append(BP6)
+listOfPieces.append(BP7)
+listOfPieces.append(BP8)
 
 WR = Rook('WhiteRook.png', (100, 800), 'white', screen)
 WN = Knight('WhiteKnight.png', (200, 800), 'white', screen)
@@ -57,46 +76,52 @@ WP6 = Pawn('WhitePawn.png', (600, 700), 'white', screen)
 WP7 = Pawn('WhitePawn.png', (700, 700), 'white', screen)
 WP8 = Pawn('WhitePawn.png', (800, 700), 'white', screen)
 
+listOfPieces.append(WR)
+listOfPieces.append(WN)
+listOfPieces.append(WB)
+listOfPieces.append(WQ)
+listOfPieces.append(WK)
+listOfPieces.append(WB2)
+listOfPieces.append(WN2)
+listOfPieces.append(WR2)
+listOfPieces.append(WP1)
+listOfPieces.append(WP2)
+listOfPieces.append(WP3)
+listOfPieces.append(WP4)
+listOfPieces.append(WP5)
+listOfPieces.append(WP6)
+listOfPieces.append(WP7)
+listOfPieces.append(WP8)
+
+def attach(piece):
+    clickSubscribers.append(piece)
+
+def detach(piece):
+    clickSubscribers.remove(piece)
+
+def notify(mouseX, mouseY):
+    for piece in clickSubscribers:
+        piece.clickedPiece(mouseX, mouseY)
+
+for piece in listOfPieces:
+    attach(piece)
 # Main game loop
 while game:
 
     # Makes sure there is no errors and will quit the program if something goes wrong
-    for event in pygame.event.get():   
+    for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game = False
-    board.draw()
-    BR.draw()
-    BN.draw()
-    BB.draw()
-    BQ.draw()
-    BK.draw()
-    BB2.draw()
-    BN2.draw()
-    BR2.draw()
-    BP1.draw()
-    BP2.draw()
-    BP3.draw()
-    BP4.draw()
-    BP5.draw()
-    BP6.draw()
-    BP7.draw()
-    BP8.draw()
+        elif pygame.mouse.get_pressed()[0]:
+            mouseX = int(pygame.mouse.get_pos()[0] / 100) * 100
+            mouseY = int(pygame.mouse.get_pos()[1] / 100) * 100
+            notify(mouseX, mouseY)
 
-    WR.draw()
-    WN.draw()
-    WB.draw()
-    WQ.draw()
-    WK.draw()
-    WB2.draw()
-    WN2.draw()
-    WR2.draw()
-    WP1.draw()
-    WP2.draw()
-    WP3.draw()
-    WP4.draw()
-    WP5.draw()
-    WP6.draw()
-    WP7.draw()
-    WP8.draw()
+    # Draws the board and pieces after every move
+    board.draw()
+
+    for pieces in listOfPieces:
+        pieces.draw()
+
     # Displays everything made before this point
     pygame.display.flip()
