@@ -1,9 +1,20 @@
 import pygame
 import pygame.image
 
+
 class Board():
+
+    def __build_board(self):
+        self.board = []
+        for i in range(8):
+            new = []
+            for j in range(8):
+                new.append(None)
+            self.board.append(new)
+
     def __init__(self, screen):
         self.screen = screen
+        self.__build_board()
        
     def draw(self):
         yPosition = 100
