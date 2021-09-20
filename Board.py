@@ -1,7 +1,6 @@
 import pygame
 import pygame.image
 
-
 class Board():
 
     def __build_board(self):

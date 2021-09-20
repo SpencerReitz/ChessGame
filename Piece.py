@@ -37,7 +37,7 @@ class Pawn(Piece):
             self.first_move = False
         else:
             #one given not blocked
-
+            pass
 
 class Queen(Piece):
     pass
