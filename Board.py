@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 from ScreenHandler import ScreenHandler
-=======
-import pygame
-import pygame.image
->>>>>>> 5c6afbf95263ec130f9eb69d42dc206acc0683ec
 
 class Board():
 
