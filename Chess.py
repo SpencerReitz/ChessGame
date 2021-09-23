@@ -1,13 +1,11 @@
 import pygame
 from pygame import mouse
 from Board import Board
-import pygame.image
 
 ## Makes the game screen and names the window
 pygame.init()
 pygame.font.init()
 pygame.display.set_caption('Spencer\'s Chess Game')
-screen = pygame.display.set_mode((1200, 1000))
 
 # Starts the game
 game = True
