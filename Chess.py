@@ -1,3 +1,7 @@
+# Top 2 lines just get rid of message saying hi from pygame community in your terminal
+from os import environ
+environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
+
 import pygame
 from pygame import mouse
 from Board import Board
