@@ -1,17 +1,17 @@
-import pygame
-import pygame.image
+from ScreenHandler import ScreenHandler
 
 class Piece:
-    def __init__(self, image, location, color, screen):
+    def __init__(self, image, location, color):
         self.image    = image
         self.location = location
         self.color    = color
-        self.screen = screen
 
     def draw(self):
-        pieceImage = pygame.image.load(self.image)
-        scaledPieceImage = pygame.transform.scale(pieceImage, (100, 100))
-        self.screen.blit(scaledPieceImage, ((self.location[0] + 1) * 100, (self.location[1] + 1) * 100))
+        ScreenHandler.drawScaledImage(
+            self.image,
+            (100, 100),
+            ((self.location[0] + 1) * 100, (self.location[1] + 1) * 100)
+        )
 
     def clickedPiece(self, newLocation):
         if ((newLocation[0] == self.location[0]) and (newLocation[1] == self.location[1])):
@@ -37,6 +37,7 @@ class Pawn(Piece):
             self.first_move = False
         else:
             #one given not blocked
+            pass
 
 
 class Queen(Piece):
