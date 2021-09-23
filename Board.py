@@ -14,14 +14,11 @@ class Board():
         self.__build_board()
        
     def draw(self):
-        yPosition = 100
         whiteSquare = (255, 255, 255)
         greySquare = (160, 160, 160)
         backgroundColor = (102, 178, 255)
         ScreenHandler.drawBackground(backgroundColor)
-        ScreenHandler.drawRect((200, 200), (100, 100))
         rect_dim = (100, 100)
-
         color = whiteSquare
 
         for col in range(8):
