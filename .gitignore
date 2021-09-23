@@ -1,6 +1,9 @@
 .idea/
-__pychache__/
+__pycache__/
+.vim/
 bin/
 lib/
 pyvenv.cfg
+venv/
+.vscode/
 
