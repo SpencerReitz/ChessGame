@@ -38,7 +38,10 @@ class Pawn(Piece):
         else:
             #one given not blocked
             pass
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5c6afbf95263ec130f9eb69d42dc206acc0683ec
 
 class Queen(Piece):
     pass
