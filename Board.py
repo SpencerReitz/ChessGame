@@ -35,6 +35,7 @@ class Board():
     def __init__(self):
         self.__build_board()
         self.last_clicked = None
+        self.valid_moves = None
 
     def clicked(self, mouse_x, mouse_y):
         if mouse_x > 7 or mouse_x < 0 or mouse_y > 7 or mouse_y < 0:
@@ -66,3 +67,10 @@ class Board():
 
                 if self.board[col][row] != None:
                     self.board[col][row].draw()
+
+                if self.valid_moves != [] and self.valid_moves != None:
+                    for move in self.valid_moves:
+                        ScreenHandler.drawRect(
+                            ((move[0] + 1) * 100, (move[1]+ 1) * 100),
+                            rect_dim,
+                            (0, 150, 150))
