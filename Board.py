@@ -21,6 +21,16 @@ class Board():
         self.board[0][4] = Queen("WhiteQueen", (0, 4), 'w')
         self.board[1] = [Pawn("WhitePawn", (1, x), 'w') for x in range(8)]
 
+        self.board[0][0] = Rook("BlackRook", (0, 0), 'b')
+        self.board[0][7] = Rook("BlackRook", (0, 7), 'b')
+        self.board[0][1] = Knight("BlackKnight", (0, 1), 'b')
+        self.board[0][6] = Knight("BlackKnight", (0, 6), 'b')
+        self.board[0][2] = Bishop("BlackBishop", (0, 2), 'b')
+        self.board[0][5] = Bishop("BlackBishop", (0, 5), 'b')
+        self.board[0][4] = King("BlackKing", (0, 4), 'b')
+        self.board[0][3] = Queen("BlackQueen", (0, 3), 'b')
+        self.board[1] = [Pawn("BlackPawn", (1, x), 'w') for x in range(8)]
+
     def __init__(self):
         self.__build_board()
        
