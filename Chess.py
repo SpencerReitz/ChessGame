@@ -18,18 +18,7 @@ game = True
 board = Board()
 
 # A list for all pieces to live in so piece drawing is an easy loop
-listOfPieces = []
-clickSubscribers = []
-
-def attach(piece):
-    clickSubscribers.append(piece)
-
-def detach(piece):
-    clickSubscribers.remove(piece)
-
-def notify(newLocation):
-    for piece in clickSubscribers:
-        piece.clickedPiece(newLocation)
+listOfPieces = [] 
 
 # Main game loop
 while game:
@@ -41,8 +30,7 @@ while game:
         elif pygame.mouse.get_pressed()[0]:
             mouseX = int(pygame.mouse.get_pos()[0] / 100) - 1
             mouseY = int(pygame.mouse.get_pos()[1] / 100) - 1
-            newLocation = (mouseX, mouseY)
-            notify(newLocation)
+            board.clicked(mouseX, mouseY)
 
     # Draws the board and pieces after every move
     board.draw()

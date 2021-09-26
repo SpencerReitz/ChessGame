@@ -11,6 +11,7 @@ class Board():
                 new.append(None)
             self.board.append(new)
 
+        # Pieces are in (y, x)
         self.board[7][0] = Rook("WhiteRook", (7, 0), 'w')
         self.board[7][7] = Rook("WhiteRook", (7, 7), 'w')
         self.board[7][1] = Knight("WhiteKnight", (7, 1), 'w')
@@ -33,6 +34,16 @@ class Board():
 
     def __init__(self):
         self.__build_board()
+        self.last_clicked = None
+
+    def clicked(self, mouse_x, mouse_y):
+        if mouse_x > 7 or mouse_x < 0 or mouse_y > 7 or mouse_y < 0:
+            return
+        if self.board[mouse_y][mouse_x] != None:
+            self.last_clicked = self.board[mouse_y][mouse_x]
+            self.valid_moves = self.board[mouse_y][mouse_x].clickedPiece()
+        elif (mouse_y, mouse_x) in self.valid_moves:
+            self.last_clicked.movePiece((mouse_y, mouse_x))
        
     def draw(self):
         whiteSquare = (255, 255, 255)
