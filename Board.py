@@ -35,16 +35,20 @@ class Board():
     def __init__(self):
         self.__build_board()
         self.last_clicked = None
-        self.valid_moves = None
+        self.valid_moves = []
 
     def clicked(self, mouse_x, mouse_y):
         if mouse_x > 7 or mouse_x < 0 or mouse_y > 7 or mouse_y < 0:
             return
         if self.board[mouse_y][mouse_x] != None:
+            print("First click =", mouse_x, ",", mouse_y)
             self.last_clicked = self.board[mouse_y][mouse_x]
             self.valid_moves = self.board[mouse_y][mouse_x].clickedPiece()
         elif (mouse_y, mouse_x) in self.valid_moves:
+            print("Second click =", mouse_x, ",", mouse_y)
             self.last_clicked.movePiece((mouse_y, mouse_x))
+            self.valid_moves = []
+            self.last_clicked = None
        
     def draw(self):
         whiteSquare = (255, 255, 255)
@@ -71,6 +75,6 @@ class Board():
                 if self.valid_moves != [] and self.valid_moves != None:
                     for move in self.valid_moves:
                         ScreenHandler.drawRect(
-                            ((move[0] + 1) * 100, (move[1]+ 1) * 100),
+                            ((move[1] + 1) * 100, (move[0]+ 1) * 100),
                             rect_dim,
                             (0, 150, 150))

@@ -14,7 +14,6 @@ class Piece:
         )
 
     def clickedPiece(self):
-        print(self.getMoves())
         return self.getMoves()
 
     def getMoves(self):
@@ -23,7 +22,6 @@ class Piece:
 
     def movePiece(self, location):
         self.location = location
-        print("Moved piece to", location)
 
 class Knight(Piece):
     def getMoves(self):
@@ -44,19 +42,19 @@ class Pawn(Piece):
         moves = []
         if (self.first_move):
             if self.color == 'b':
-                moves = [(self.location[1], self.location[0] + 1), (self.location[1], self.location[0] + 2)]
+                moves = [(self.location[0] + 1, self.location[1]), (self.location[0] + 2, self.location[1])]
             else:
-                moves = [(self.location[1], self.location[0] - 1), (self.location[1], self.location[0] - 2)]
+                moves = [(self.location[0] - 1, self.location[1]), (self.location[0] - 2, self.location[1])]
         else:
             if self.color == 'b':
-                moves = [(self.location[1], self.location[0] + 1)]
+                moves = [(self.location[0] + 1, self.location[1])]
             else:
-                moves = [(self.location[1], self.location[0] - 1)]
+                moves = [(self.location[0] - 1, self.location[1])]
         return moves
 
     def movePiece(self, location):
-        self.first_move = False
         super().movePiece(location)
+        self.first_move = False
 
 class Queen(Piece):
     def getMoves(self):
