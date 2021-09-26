@@ -1,4 +1,5 @@
 from ScreenHandler import ScreenHandler
+from Piece import Pawn, Bishop, Knight, Queen, Rook, King
 
 class Board():
 
@@ -9,6 +10,16 @@ class Board():
             for j in range(8):
                 new.append(None)
             self.board.append(new)
+
+        self.board[0][0] = Rook("WhiteRook", (0, 0), 'w')
+        self.board[0][7] = Rook("WhiteRook", (0, 7), 'w')
+        self.board[0][1] = Knight("WhiteKnight", (0, 1), 'w')
+        self.board[0][6] = Knight("WhiteKnight", (0, 6), 'w')
+        self.board[0][2] = Bishop("WhiteBishop", (0, 2), 'w')
+        self.board[0][5] = Bishop("WhiteBishop", (0, 5), 'w')
+        self.board[0][3] = King("WhiteKing", (0, 3), 'w')
+        self.board[0][4] = Queen("WhiteQueen", (0, 4), 'w')
+        self.board[1] = [Pawn("WhitePawn", (1, x), 'w') for x in range(8)]
 
     def __init__(self):
         self.__build_board()
@@ -31,3 +42,6 @@ class Board():
                     ((row + 1) * 100, (col + 1) * 100), 
                     rect_dim,
                     color)
+
+                if self.board[col][row] != None:
+                    self.board[col][row].draw()
