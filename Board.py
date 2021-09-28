@@ -37,18 +37,27 @@ class Board():
         self.last_clicked = None
         self.valid_moves = []
 
+    # Needs to be fixed so the list gets updated once a piece moves to remove the piece from current location and move to new location
+    def listUpdate(self, mouse_y1, mouse_x1, mouse_y2, mouse_x2):
+        print("Removed" , mouse_y1, mouse_x1)
+        self.board[mouse_y1][mouse_x1] = None
+
     def clicked(self, mouse_x, mouse_y):
         if mouse_x > 7 or mouse_x < 0 or mouse_y > 7 or mouse_y < 0:
             return
         if self.board[mouse_y][mouse_x] != None:
-            print("First click =", mouse_x, ",", mouse_y)
+            print("First click on piece at", mouse_x, ",", mouse_y)
             self.last_clicked = self.board[mouse_y][mouse_x]
             self.valid_moves = self.board[mouse_y][mouse_x].clickedPiece()
         elif (mouse_y, mouse_x) in self.valid_moves:
-            print("Second click =", mouse_x, ",", mouse_y)
+            print("Second click moves piece to ", mouse_x, ",", mouse_y)
             self.last_clicked.movePiece((mouse_y, mouse_x))
+            self.listUpdate(mouse_y, mouse_x, mouse_y, mouse_x)
             self.valid_moves = []
             self.last_clicked = None
+        elif self.board[mouse_y][mouse_x] == None:
+            self.valid_moves = []
+            self.last_clicked = None            
        
     def draw(self):
         whiteSquare = (255, 255, 255)

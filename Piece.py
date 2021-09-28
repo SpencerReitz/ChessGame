@@ -42,11 +42,13 @@ class Pawn(Piece):
         moves = []
         if (self.first_move):
             if self.color == 'b':
+                print("In first black")
                 moves = [(self.location[0] + 1, self.location[1]), (self.location[0] + 2, self.location[1])]
             else:
                 moves = [(self.location[0] - 1, self.location[1]), (self.location[0] - 2, self.location[1])]
         else:
             if self.color == 'b':
+                print("In second black")
                 moves = [(self.location[0] + 1, self.location[1])]
             else:
                 moves = [(self.location[0] - 1, self.location[1])]
